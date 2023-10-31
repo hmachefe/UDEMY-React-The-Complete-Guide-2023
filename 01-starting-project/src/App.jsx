@@ -3,8 +3,9 @@ import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept.jsx";
 import TabButton from "./components/TabButton.jsx";
 
-function onSelect() {
-  console.log('button has been clicked')
+function onSelect(selectedButton) {
+  // selectedButton may be 'Components' or 'JSX, or 'Props' or 'State'
+  console.log('button has been clicked from component', selectedButton);
 }
 
 function App() {
@@ -28,10 +29,10 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={onSelect}>Components</TabButton>
-            <TabButton onSelect={onSelect}>JSX</TabButton>
-            <TabButton onSelect={onSelect}>Props</TabButton>
-            <TabButton onSelect={onSelect}>State</TabButton>                        
+            <TabButton onSelect={() => onSelect('Components')}>Components</TabButton>
+            <TabButton onSelect={() => onSelect('JSX')}>JSX</TabButton>
+            <TabButton onSelect={() => onSelect('Props')}>Props</TabButton>
+            <TabButton onSelect={() => onSelect('State')}>State</TabButton>
           </menu>
         </section>
       </main>
