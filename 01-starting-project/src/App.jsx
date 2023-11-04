@@ -3,12 +3,17 @@ import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept.jsx";
 import TabButton from "./components/TabButton.jsx";
 
+let tabContent = 'Please click a button';
+
 function onSelect(selectedButton) {
   // selectedButton may be 'Components' or 'JSX, or 'Props' or 'State'
   console.log('button has been clicked from component', selectedButton);
+  tabContent = selectedButton;
+  console.log('selectedButton == ', selectedButton)
 }
 
 function App() {
+  console.log('App');
   return (
     <div>
       <Header></Header>
@@ -34,6 +39,7 @@ function App() {
             <TabButton onSelect={() => onSelect('Props')}>Props</TabButton>
             <TabButton onSelect={() => onSelect('State')}>State</TabButton>
           </menu>
+          {tabContent}
         </section>
       </main>
     </div>
