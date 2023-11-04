@@ -2,18 +2,23 @@ import {CORE_CONCEPTS} from "./data.js";
 import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept.jsx";
 import TabButton from "./components/TabButton.jsx";
+import { useState } from "react";
 
-let tabContent = 'Please click a button';
 
-function onSelect(selectedButton) {
-  // selectedButton may be 'Components' or 'JSX, or 'Props' or 'State'
-  console.log('button has been clicked from component', selectedButton);
-  tabContent = selectedButton;
-  console.log('selectedButton == ', selectedButton)
-}
+
 
 function App() {
   console.log('App');
+  const [selectedTopic, setSelectedTopic] = useState('please click a button');
+  console.log('2.   selectedTopic == ', selectedTopic)
+  
+  function onSelect(selectedButton) {
+    // selectedButton may be 'Components' or 'JSX, or 'Props' or 'State'
+    console.log('button has been clicked from component', selectedButton);
+    setSelectedTopic(selectedButton);
+    console.log('1.   selectedTopic == ', selectedTopic)
+  }
+
   return (
     <div>
       <Header></Header>
@@ -39,7 +44,7 @@ function App() {
             <TabButton onSelect={() => onSelect('Props')}>Props</TabButton>
             <TabButton onSelect={() => onSelect('State')}>State</TabButton>
           </menu>
-          {tabContent}
+          {selectedTopic}
         </section>
       </main>
     </div>
