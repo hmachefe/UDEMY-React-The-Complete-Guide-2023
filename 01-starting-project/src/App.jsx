@@ -8,7 +8,7 @@ import { EXAMPLES } from "./data.js";
 
 function App() {
   console.log('App');
-  const [selectedTopic, setSelectedTopic] = useState('components');
+  const [selectedTopic, setSelectedTopic] = useState();
   console.log('2.   selectedTopic == ', selectedTopic)
   
   function onSelect(selectedButton) {
@@ -17,6 +17,21 @@ function App() {
     setSelectedTopic(selectedButton);
     console.log('1.   selectedTopic == ', selectedTopic)
   }
+
+  let tabContent = <p> 'Please select topic' </p>;
+  if (selectedTopic) {
+    tabContent = <div id="tab-content">
+      <h2>
+        {EXAMPLES[selectedTopic].title}
+      </h2>
+      <p>
+        {EXAMPLES[selectedTopic].description}
+      </p>
+      <pre>
+        <code>{EXAMPLES[selectedTopic].code}</code>
+      </pre>
+    </div>
+  };
 
   return (
     <div>
@@ -43,17 +58,7 @@ function App() {
             <TabButton onSelect={() => onSelect('props')}>Props</TabButton>
             <TabButton onSelect={() => onSelect('state')}>State</TabButton>
           </menu>
-        <div id="tab-content">
-          <h2>
-            {EXAMPLES[selectedTopic].title}
-          </h2>
-          <p>
-            {EXAMPLES[selectedTopic].description}
-          </p>
-          <pre>
-            <code>{EXAMPLES[selectedTopic].code}</code>
-          </pre>
-        </div>
+          {tabContent}
         </section>
       </main>
     </div>
