@@ -29,10 +29,10 @@ export function Examples() {
 
     return <Section id="examples" title="Examples">
         <menu>
-            <TabButton isSelected={selectedTopic === 'components'} onSelect={() => onSelect('components')}>Components</TabButton>
-            <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => onSelect('jsx')}>JSX</TabButton>
-            <TabButton isSelected={selectedTopic === 'props'} onSelect={() => onSelect('props')}>Props</TabButton>
-            <TabButton isSelected={selectedTopic === 'state'} onSelect={() => onSelect('state')}>State</TabButton>
+            <TabButton isSelected={selectedTopic === 'components'} onClick={() => onSelect('components')}>Components</TabButton>
+            <TabButton isSelected={selectedTopic === 'jsx'} onClick={() => onSelect('jsx')}>JSX</TabButton>
+            <TabButton isSelected={selectedTopic === 'props'} onClick={() => onSelect('props')}>Props</TabButton>
+            <TabButton isSelected={selectedTopic === 'state'} onClick={() => onSelect('state')}>State</TabButton>
         </menu>
         {tabContent}
     </Section>
