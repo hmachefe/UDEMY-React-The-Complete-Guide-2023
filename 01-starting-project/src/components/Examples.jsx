@@ -30,7 +30,7 @@ export function Examples() {
 
     return <Section id="examples" title="Examples">
       <Tabs 
-      buttonsContainer="menu" // {Section}
+      buttonsContainer="menu" // or {Section} for instance
       buttons={
         <>
             <TabButton isSelected={selectedTopic === 'components'} onClick={() => onSelect('components')}>Components</TabButton>
