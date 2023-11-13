@@ -12,6 +12,7 @@ function App() {
         </ol>
         GAME BOARD
       </div>
+      LOG
     </main>
   )
 }
