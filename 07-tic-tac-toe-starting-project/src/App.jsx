@@ -6,12 +6,9 @@ function App() {
   
   const [activeUser, setActiveUser] = useState('X');
 
-  function handleSquareClick(playerSymbol) {
-    if (playerSymbol === 'X') {
-      setActiveUser('O');
-    } else {
-      setActiveUser('X');
-    }
+
+  function handleSquareClick() {    
+    setActiveUser((currentActiveUser => (currentActiveUser === 'X' ? 'O' : 'X')));
   }
 
 
