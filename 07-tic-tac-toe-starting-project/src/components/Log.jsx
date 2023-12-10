@@ -1,7 +1,16 @@
-export default function Log() {
+export default function Log({turns}) {
+ 
     return (
         <ol id="log">
-            <h1>Log</h1>
+            {turns.map((turn, index) => {
+                const {square, player} = turn;
+                const {row, col} = square;
+                return (
+                    <li key={index}>
+                        Player {player} has selected [{row}, {col}]
+                    </li>
+                )
+            })}
         </ol>
     )
 }
