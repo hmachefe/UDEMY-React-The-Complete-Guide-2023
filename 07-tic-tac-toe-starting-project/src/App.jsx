@@ -4,7 +4,7 @@ import { useState } from "react";
 import Log from "./components/Log";
 
 
-function derivatedActiveUser(gameTurns) {
+function deriveActiveUser(gameTurns) {
   let currentPlayer = 'X';
 
   if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
@@ -16,7 +16,7 @@ function derivatedActiveUser(gameTurns) {
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
   // const [activeUser, setActiveUser] = useState('X');
-  const activePlayer = derivatedActiveUser(gameTurns);
+  const activePlayer = deriveActiveUser(gameTurns);
 
 
   function handleSelectSquare(rowIndex, colIndex) {    
@@ -24,7 +24,7 @@ function App() {
     
     setGameTurns((previousGameTurns) => {
 
-      let currentPlayer = derivatedActiveUser(previousGameTurns);
+      let currentPlayer = deriveActiveUser(previousGameTurns);
 
       const updatedGameTurns = [
         {
