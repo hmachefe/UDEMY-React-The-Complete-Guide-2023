@@ -26,7 +26,7 @@ function App() {
   // const [activeUser, setActiveUser] = useState('X');
   const activePlayer = deriveActivePlayer(gameTurns);
 
-  let gameBoard = initialGameBoard;
+  let gameBoard = [...initialGameBoard.map(array => [...array])];
 
   for (const turn of gameTurns) {
       const {square, player} = turn;
@@ -39,12 +39,20 @@ function App() {
     const firstSquare = gameBoard[combination[0].row][combination[0].column];
     const secondSquare = gameBoard[combination[1].row][combination[1].column];
     const thirdSquare = gameBoard[combination[2].row][combination[2].column];    
-    if (firstSquare && firstSquare === secondSquare && firstSquare === thirdSquare) {
+    if (firstSquare 
+        && firstSquare === secondSquare 
+        && firstSquare === thirdSquare
+    ) {
       winner = firstSquare;
     }
   }
 
-  const hasDraw = gameTurns.length === 9 && !winner;
+  const gameBoardLength = initialGameBoard.flat().length;
+  const hasDraw = gameTurns.length === gameBoardLength && !winner;
+
+  function reMatchHandler() {
+    setGameTurns([]);
+  }
 
   function handleSelectSquare(rowIndex, colIndex) {    
     // setActiveUser((currentActiveUser => (currentActiveUser === 'X' ? 'O' : 'X')));
@@ -80,7 +88,7 @@ function App() {
         </ol>
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard}/>
       </div>
-      {(winner || hasDraw) && <GameOver winner={winner}/>}
+      {(winner || hasDraw) && <GameOver winner={winner} onRematch={reMatchHandler}/>}
       <Log turns={gameTurns}/>
     </main>
   )
