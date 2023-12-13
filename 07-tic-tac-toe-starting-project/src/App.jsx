@@ -65,7 +65,7 @@ function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
   const gameBoard = deriveGameboard(gameTurns);
-  let winner = deriveWinner(gameBoard, players);
+  const winner = deriveWinner(gameBoard, players);
   
   const gameBoardLength = INITIAL_GAME_BOARD.flat().length;
   const hasDraw = gameTurns.length === gameBoardLength && !winner;
