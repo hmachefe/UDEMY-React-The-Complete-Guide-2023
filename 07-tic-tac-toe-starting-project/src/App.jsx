@@ -33,12 +33,16 @@ function App() {
       gameBoard[row][col] = player;
   }
 
-
+  let winner = false;
   for (const combination of WINNING_COMBINATIONS) {
-    const firstSquare = gameBoard[combination[0].row][combination[0].col];
-    const secondSquare = gameBoard[combination[1].row][combination[1].col];
-    const thirdSquare = gameBoard[combination[2].row][combination[2].col];    
+    const firstSquare = gameBoard[combination[0].row][combination[0].column];
+    const secondSquare = gameBoard[combination[1].row][combination[1].column];
+    const thirdSquare = gameBoard[combination[2].row][combination[2].column];    
+    if (firstSquare && firstSquare === secondSquare && firstSquare === thirdSquare) {
+      winner = true;
+    }
   }
+  debugger;
 
   function handleSelectSquare(rowIndex, colIndex) {    
     // setActiveUser((currentActiveUser => (currentActiveUser === 'X' ? 'O' : 'X')));
@@ -67,6 +71,7 @@ function App() {
   return (
     <main>
       <div id="game-container">
+        {winner && <div id="winner">Player {activePlayer} wins!</div>}
         <ol id="players" className="highlight-player">
           <Player initialName="Player 1" symbol="X" isActive={activePlayer === 'X'}/>
           <Player initialName="Player 2" symbol="O" isActive={activePlayer === 'O'}/>          
