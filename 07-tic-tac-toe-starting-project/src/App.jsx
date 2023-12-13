@@ -42,7 +42,6 @@ function App() {
       winner = true;
     }
   }
-  debugger;
 
   function handleSelectSquare(rowIndex, colIndex) {    
     // setActiveUser((currentActiveUser => (currentActiveUser === 'X' ? 'O' : 'X')));
