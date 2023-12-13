@@ -27,7 +27,6 @@ function App() {
   const activePlayer = deriveActivePlayer(gameTurns);
 
   let gameBoard = [...initialGameBoard.map(array => [...array])];
-  console.log('initialGameBoard == ', initialGameBoard)
 
   for (const turn of gameTurns) {
       const {square, player} = turn;
