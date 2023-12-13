@@ -21,9 +21,19 @@ function deriveActivePlayer(gameTurns) {
 }
 
 function App() {
+  const [players, setPlayers] = useState({
+    X: 'Player 1',
+    O: 'Player 2'
+  });
+
+  function handlePlayerNameChange(symbol, name) {
+    setPlayers((previousPlayers) => ({
+      ...previousPlayers,
+      [symbol]: name
+    }))
+  }
+
   const [gameTurns, setGameTurns] = useState([]);
-  // const [hasWinner, setHasWinner] = useState(false);
-  // const [activeUser, setActiveUser] = useState('X');
   const activePlayer = deriveActivePlayer(gameTurns);
 
   let gameBoard = [...initialGameBoard.map(array => [...array])];
@@ -43,7 +53,8 @@ function App() {
         && firstSquare === secondSquare 
         && firstSquare === thirdSquare
     ) {
-      winner = firstSquare;
+      debugger
+      winner = players[firstSquare];
     }
   }
 
@@ -83,8 +94,18 @@ function App() {
       <div id="game-container">
         {winner && <div id="winner">Player {activePlayer} wins!</div>}
         <ol id="players" className="highlight-player">
-          <Player initialName="Player 1" symbol="X" isActive={activePlayer === 'X'}/>
-          <Player initialName="Player 2" symbol="O" isActive={activePlayer === 'O'}/>          
+          <Player 
+            initialName="Player 1"
+            symbol="X" 
+            isActive={activePlayer === 'X'}
+            handlePlayerNameChange={handlePlayerNameChange}          
+          />
+          <Player 
+            initialName="Player 2" 
+            symbol="O" 
+            isActive={activePlayer === 'O'}
+            handlePlayerNameChange={handlePlayerNameChange}
+          />          
         </ol>
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard}/>
       </div>
