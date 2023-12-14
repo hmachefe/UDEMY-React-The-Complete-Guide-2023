@@ -19,11 +19,16 @@ function App() {
       });
   }
 
+  const isInputValid = userInput.duration > 1;
+
   return (
     <>
         <Header/>
-        <UserInput userInput={userInput} onChange={handleUserInputChange}/>
-        <Results input={userInput}/>
+          <UserInput userInput={userInput} onChange={handleUserInputChange}/>
+          {!isInputValid  &&  <p>Please enter a valid input</p>}
+          {isInputValid   &&  <Results input={userInput}/>}
+
+        
     </>
   )
 }
