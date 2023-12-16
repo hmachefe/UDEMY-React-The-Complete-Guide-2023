@@ -22,12 +22,21 @@ const Input = styled.input`
   width: 100%;
   padding: 0.75rem 1rem;
   line-height: 1.5;
-  backgroundColor: ${({ $invalid }) => $invalid ? '#fed2d2' : '#d1d5db'};    
+  background-color: ${({ $invalid }) => $invalid ? '#fed2d2' : '#d1d5db'};    
   color: ${({ $invalid }) => $invalid ? '#ef4444' : '#374151'};  
-  border: 1px solid ${ ( { $invalid } ) => $invalid ? '#fed2d2' : transparent } ;
+  border: 1px solid ${ ( { $invalid } ) => $invalid ? '#fed2d2' : 'transparent' } ;
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `
+
+const Button = styled.button`
+  cursor: pointer;
+  background: none;
+  line-height: inherit;
+  &:focus {
+    outline: none;
+  }
+`;
 
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -72,10 +81,10 @@ export default function AuthInputs() {
         </p>
       </ControlContainer>
       <div className="actions">
-        <button type="button" className="text-button">
+        <Button type="button" className="text-button">
           Create a new account
-        </button>
-        <button className='button' onClick={handleLogin}>Sign In</button>
+        </Button>
+        <Button className='button' onClick={handleLogin}>Sign In</Button>
       </div>
     </div>
   );
