@@ -1,8 +1,10 @@
 import { calculateInvestmentResults, formatter } from '../util/investment.js';
 
 
+const results = [];
+
+
 export default function Results({ input }) {
-  const results = [];
 
   calculateInvestmentResults(input, results);
 
