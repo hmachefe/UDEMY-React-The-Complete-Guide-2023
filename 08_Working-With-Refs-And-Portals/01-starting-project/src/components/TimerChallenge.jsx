@@ -12,7 +12,7 @@ export default function TimerChallenge({ title, targetTime }) {
     }
 
     function handleStop() {
-        
+
     }
 
     return (
