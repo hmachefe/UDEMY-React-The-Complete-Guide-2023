@@ -26,6 +26,7 @@ function App() {
 
     setProjectsState(prevProjectsState => ({
       ...prevProjectsState,
+      selectedProjectId: undefined,
       projects: [...prevProjectsState.projects, newProject]
     }));
   }
