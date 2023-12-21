@@ -1,17 +1,33 @@
 import { useRef } from "react"
 import Input from "./Input"
+import Modal from "./Modal"
 
 export default function NewProject({onAdd}) {
+
+    const modal = useRef();
 
     const title = useRef();
     const description = useRef();
     const dueDate = useRef();
 
     function onSave() {
+
+        const enteredTitle = title.current.value;
+        const enteredDescription = description.current.value;
+        const enteredDueDate = dueDate.current.value;
+
+        if (enteredTitle == "" 
+            || enteredDescription == "" 
+            || enteredDueDate == ""
+        ) {
+            modal.current.open();
+            return;
+        }
+
         onAdd({
-            title: title.current.value,
-            description: description.current.value,
-            dueDate: dueDate.current.value
+            title: titleValue,
+            description: descriptionValue,
+            dueDate: dueDateValue
         })
     }
 
@@ -26,6 +42,11 @@ export default function NewProject({onAdd}) {
                 </li>                
             </menu>
             <div>
+                <Modal ref={modal} buttonCaptions="OKay">
+                    <h2>Invalid input</h2>
+                    <p>Oops... looks like you forgot toe enter a value</p>
+                    <p>Please make sure your provided a valid value for every inputs</p>
+                </Modal>
                 <Input type="text"ref={title} label="Title"/>
                 <Input ref={description} label="Description" textarea/>                                    
                 <Input type="date" ref={dueDate} label="Due Date"/>                
