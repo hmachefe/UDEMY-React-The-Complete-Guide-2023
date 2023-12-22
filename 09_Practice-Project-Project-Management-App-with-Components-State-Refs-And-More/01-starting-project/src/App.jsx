@@ -28,8 +28,11 @@ function App() {
     });
   }
 
-  function handleDeleteTask() {
-
+  function handleDeleteTask(id) {
+    setProjectsState(prevProjectsState => ({
+      ...prevProjectsState,
+      tasks: prevProjectsState.tasks.filter(task => task.id !== id)
+    }))
   }
 
   function handleStartAddProject() {
@@ -54,7 +57,6 @@ function App() {
 
 
   function handleCancelNewProject() {
-
     setProjectsState(prevProjectsState => ({
       ...prevProjectsState,
       selectedProjectId: undefined,
