@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import Header from './components/Header.jsx';
 import Shop from './components/Shop.jsx';
 import { DUMMY_PRODUCTS } from './dummy-products.js';
@@ -70,14 +69,12 @@ function App() {
   const contextValue = {
     items: shoppingCart.items,
     addItemToCart: handleAddItemToCart,
+    updateItemQuantity: handleUpdateCartItemQuantity,
   }
 
   return (
     <CartContext.Provider value={contextValue}>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+      <Header />
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
