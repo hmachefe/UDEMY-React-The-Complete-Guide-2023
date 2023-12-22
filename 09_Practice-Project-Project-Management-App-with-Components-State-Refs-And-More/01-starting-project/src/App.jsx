@@ -51,6 +51,7 @@ function App() {
   function handleDeleteProject() {
     setProjectsState(prevProjectsState => ({
       ...prevProjectsState,
+      selectedProjectId: undefined,
       projects: prevProjectsState.projects.filter(project => project.id !== prevProjectsState.selectedProjectId)
     }))
   }
