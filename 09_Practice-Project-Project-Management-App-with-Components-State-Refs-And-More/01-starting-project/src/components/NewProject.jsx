@@ -34,7 +34,7 @@ export default function NewProject({onAdd, onCancel}) {
     return (
         <>
             <Modal ref={modal} buttonCaptions="OKay">
-                <h2 classNAme="text-xl font-bold text-stone-700 my-4">Invalid input</h2>
+                <h2 className="text-xl font-bold text-stone-700 my-4">Invalid input</h2>
                 <p className="text-stone-600 mb-4">Oops... looks like you forgot toe enter a value</p>
                 <p className="text-stone-600 mb-4">Please make sure your provided a valid value for every inputs</p>
             </Modal>
