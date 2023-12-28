@@ -17,6 +17,10 @@ export default function Quiz() {
         });
     }
 
+    const handleSkipAnswer = useCallback(() => {
+        handleSelectAnswer(null);
+    }, [handleSelectAnswer]);
+
     if (isQuizComplete) {
         return (
             <div id="summary">
@@ -37,7 +41,7 @@ export default function Quiz() {
                 <ul id="answers">
                     {QUESTIONS[activeQuestionIndex].answers.map((answer) => (
                         <li key={answer} className="answer">
-                            <button onClick={() => handleSelectAnswer(answer)}>
+                            <button onClick={handleSkipAnswer}>
                                 {answer}
                             </button>
                         </li>
