@@ -11,35 +11,34 @@ export default function Quiz() {
     const activeQuestionIndex = 
         answerState === '' ? userAnswers.length : userAnswers.length - 1;
 
-    const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
+    const isQuizComplete = activeQuestionIndex === QUESTIONS.length;
 
-    const handleSelectAnswer = useCallback
-        (function handleSelectAnswer(selectedAnswer) {
-            setAnswerState('answered');
-            setUserAnswers((previousUserAnswers) => {
-                return [...previousUserAnswers, selectedAnswer];
-            });
+    const handleSelectAnswer = useCallback(function handleSelectAnswer(selectedAnswer) {
+        setAnswerState('answered');
+        setUserAnswers((previousUserAnswers) => {
+            return [...previousUserAnswers, selectedAnswer];
+        });
+
+        setTimeout(() => {
+            if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
+                setAnswerState('correct');
+            } else {
+                setAnswerState('wrong');
+            }
 
             setTimeout(() => {
-                if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
-                    setAnswerState('correct');
-                } else {
-                    setAnswerState('wrong');
-                }
+                setAnswerState('');
+            }, 2000)
 
-                setTimeout(() => {
-                    setAnswerState('');
-                }, 2000)
+        }, 1000)
 
-            }, 1000)
-
-        }, [activeQuestionIndex]);
+    }, [activeQuestionIndex]);
 
     const handleSkipAnswer = useCallback(() => {
         handleSelectAnswer(null);
     }, [handleSelectAnswer]);
 
-    if (quizIsComplete) {
+    if (isQuizComplete) {
         return (
             <div id="summary">
                 <img src={quizCompleteImg} alt="Trophy icon" />
@@ -55,10 +54,10 @@ export default function Quiz() {
                 questionText={QUESTIONS[activeQuestionIndex].text}
                 answers={QUESTIONS[activeQuestionIndex].answers}
                 answerState={answerState}
-                selectedAnswer={userAnswers[userAnswers.length - 1]}
+                selectedAnswer={userAnswers[userAnswers.length] - 1}
                 onSelectAnswer={handleSelectAnswer}
                 onSkipAnswer={handleSkipAnswer}
-            />        
+            />
         </div>
     )
 }
