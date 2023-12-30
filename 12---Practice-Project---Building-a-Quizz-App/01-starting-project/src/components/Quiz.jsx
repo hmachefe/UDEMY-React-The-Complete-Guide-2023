@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import QUESTIONS from '../questions.js';
 import quizCompleteImg from '../assets/quiz-complete.png';
-import QuestionTimer from './QuestionTimer.jsx';
+import Question from './Question.jsx';
 
 export default function Quiz() {
     
@@ -11,34 +11,35 @@ export default function Quiz() {
     const activeQuestionIndex = 
         answerState === '' ? userAnswers.length : userAnswers.length - 1;
 
-    const isQuizComplete = activeQuestionIndex === QUESTIONS.length;
+    const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
-    const handleSelectAnswer = useCallback(function handleSelectAnswer(selectedAnswer) {
-        setAnswerState('answered');
-        setUserAnswers((previousUserAnswers) => {
-            return [...previousUserAnswers, selectedAnswer];
-        });
-
-        setTimeout(() => {
-            if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
-                setAnswerState('correct');
-            } else {
-                setAnswerState('wrong');
-            }
+    const handleSelectAnswer = useCallback
+        (function handleSelectAnswer(selectedAnswer) {
+            setAnswerState('answered');
+            setUserAnswers((previousUserAnswers) => {
+                return [...previousUserAnswers, selectedAnswer];
+            });
 
             setTimeout(() => {
-                setAnswerState('');
-            }, 2000)
+                if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
+                    setAnswerState('correct');
+                } else {
+                    setAnswerState('wrong');
+                }
 
-        }, 1000)
+                setTimeout(() => {
+                    setAnswerState('');
+                }, 2000)
 
-    }, [activeQuestionIndex]);
+            }, 1000)
+
+        }, [activeQuestionIndex]);
 
     const handleSkipAnswer = useCallback(() => {
         handleSelectAnswer(null);
     }, [handleSelectAnswer]);
 
-    if (isQuizComplete) {
+    if (quizIsComplete) {
         return (
             <div id="summary">
                 <img src={quizCompleteImg} alt="Trophy icon" />
@@ -47,42 +48,17 @@ export default function Quiz() {
         )
     }
 
-    const shuffledAnsers = [...QUESTIONS[activeQuestionIndex].answers];
-    shuffledAnsers.sort(() => Math.random() - 0.5);
-
     return (
         <div id="quiz">
-            <div id="question">
-                <QuestionTimer 
-                    key={activeQuestionIndex}
-                    timeout={3000} 
-                    onTimeout={handleSkipAnswer}
-                />
-                <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
-                <ul id="answers">
-                    {shuffledAnsers.map((answer) => {
-
-                        const isSelected = userAnswers[userAnswers.length - 1] === answer;
-                        let cssClass = '';
-
-                        if (answerState === 'answered' && isSelected) {
-                            cssClass = 'selected';
-                        }
-
-                        if ((answerState === 'correct' || answerState === 'wrong') && isSelected) {
-                            cssClass = answerState;
-                        }
-
-                        return (
-                        <li key={answer} className="answer">
-                            <button onClick={() =>handleSelectAnswer(answer)} className={cssClass}>
-                                {answer}
-                            </button>
-                        </li>
-                        );
-                    })}
-                </ul>            
-            </div>
+            <Question 
+                key={activeQuestionIndex}
+                questionText={QUESTIONS[activeQuestionIndex].text}
+                answers={QUESTIONS[activeQuestionIndex].answers}
+                answerState={answerState}
+                selectedAnswer={userAnswers[userAnswers.length - 1]}
+                onSelectAnswer={handleSelectAnswer}
+                onSkipAnswer={handleSkipAnswer}
+            />        
         </div>
     )
 }
