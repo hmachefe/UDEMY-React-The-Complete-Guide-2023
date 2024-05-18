@@ -23,25 +23,6 @@ export default function AvailablePlaces({ onSelectPlace }) {
     fetchAvailablePlaces, 
   []);
 
-  useEffect(() => {
-
-    async function fetchPlaces() {
-      setIsFetching(true);
-
-      try {
-        const places = await fetchAvailablePlaces();
-
-
-
-      } catch (error) {
-        setError({message: error.message || 'Failed to fetch places'});
-        setIsFetching(false);   
-      }
-    };
-
-    fetchPlaces();
-  }, []);
-
   if (error) {
     return <Error title="Could not fetch places" message={error.message} />
   }
