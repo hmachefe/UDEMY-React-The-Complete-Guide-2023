@@ -1,5 +1,5 @@
-import Header from "./assets/Header.jsx";
-import Meals from "./assets/Meals.jsx";
+import Header from "./components/Header.jsx";
+import Meals from "./components//Meals.jsx";
 
 function App() {
   return (
