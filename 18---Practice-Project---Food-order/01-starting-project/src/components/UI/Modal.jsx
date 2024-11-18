@@ -7,8 +7,15 @@ function Modal({children, open, className = ''}) {
     const dialogRef = useRef();
 
     useEffect(() => {
+
+        const modal = dialogRef.current;
+
         if (open) {
-            dialogRef.current.showModal();
+            modal.showModal();
+        }   
+
+        return () => {
+            modal.close();
         }
     }, [open]);
 
