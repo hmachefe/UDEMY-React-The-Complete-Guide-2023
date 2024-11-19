@@ -23,8 +23,20 @@ function Checkout() {
     function handleSubmit(event) {
         event.preventDefault();
         const fd = new FormData(event.target);
-        const customerData = Object.entries(fd.entries());
-        console.log('customerData', customerData);
+        const customerData = Object.fromEntries(fd.entries());
+        fetch('http://localhost:3000/orders', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                order: {
+                    items: cartCtxt.items, 
+                    customer: customerData
+                }
+            })
+        });
+
     }
 
   return (
@@ -36,7 +48,7 @@ function Checkout() {
             <h2>Checkout</h2>
             <p>Total Amount: {currencyFormatter.format(cartTotal)} </p>
 
-            <Input label="Full Name" type="text" id="full-name"/>
+            <Input label="Full Name" type="text" id="name"/>
             <Input label="Email Address" type="email" id="email" />
             <Input label="Street" type="text" id="street" />
             <div className="control-row">
