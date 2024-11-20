@@ -21,6 +21,17 @@ body {
   padding: 3rem 10%;
 }
 
+.center {
+  text-align: center;
+}
+.error {
+  text-align: center;
+  background: rgb(219, 161, 161);
+  border: 1px solid rgb(255, 0, 0);
+  width: 600px;
+  margin: 0 auto; /* Centers the div horizontally */
+}
+
 #main-header #title {
   display: flex;
   gap: 1rem;
