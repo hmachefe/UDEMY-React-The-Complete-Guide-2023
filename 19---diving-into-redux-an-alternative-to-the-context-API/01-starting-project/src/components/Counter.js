@@ -29,11 +29,11 @@ import { Component } from 'react';
 class Counter extends Component {
 
   incrementHandler() {
-    this.props.increment.bind(this);
+    this.props.increment();
   }
 
   decrementHandler() {
-    this.props.decrement.bind(this);
+    this.props.decrement();
   }
 
   toggleCounterHandler() {}
@@ -44,8 +44,8 @@ class Counter extends Component {
         <h1>Redux Counter</h1>
         <div className={classes.value}> {this.props.counter} </div>
         <div class="counter">
-          <button onClick={this.incrementHandler}>Increment</button>
-          <button onClick={this.decrementHandler}>Decrement</button>
+          <button onClick={this.incrementHandler.bind(this)}>Increment</button>
+          <button onClick={this.decrementHandler.bind(this)}>Decrement</button>
         </div>
         <button onClick={this.toggleCounterHandler}>Toggle Counter</button>
       </main>
