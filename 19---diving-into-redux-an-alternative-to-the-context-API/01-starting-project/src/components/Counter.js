@@ -4,7 +4,8 @@ import { counterActions } from '../store/index';
 
 const Counter = () => {
 
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state.counter.value);
+  const show = useSelector((state) => state.counter.show);
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
@@ -23,12 +24,10 @@ const Counter = () => {
     dispatch(counterActions.toggleCounter());
   };
 
-  const showCounter = useSelector((state) => state.showCounter);
-
     return (
       <main className={classes.counter}>
         <h1>Redux Counter</h1>
-        {showCounter &&  <div className={classes.value}> {counter} </div>}
+        {show &&  <div className={classes.value}> {counter} </div>}
         <div class="counter">
           <button onClick={incrementHandler}>Increment</button>
           <button onClick={increaseHandler}>Increment by 5</button>
