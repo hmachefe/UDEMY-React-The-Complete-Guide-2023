@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function ProductDetailPage() {
 
@@ -7,8 +7,10 @@ function ProductDetailPage() {
 
   return (
     <>
-    <h1>Product Detail</h1>
+    <h1>Product Details !</h1>
     <div>{params.productId}</div>
+    {/* go back one level through the navigation */}
+    <p><Link to=".." relative="path">Back</Link></p> 
     </>
   )
 }
