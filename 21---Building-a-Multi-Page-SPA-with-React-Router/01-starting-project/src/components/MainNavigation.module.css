@@ -16,8 +16,8 @@
     color: var(--color-primary-400);
   }
   
-  .list a:hover,
-  .list a.active {
+  .list a:hover, /* rendered by <Link /> component */
+  .list a.active { /* rendered by <Link /> component */
     color: var(--color-primary-800);
     text-decoration: underline;
   }
