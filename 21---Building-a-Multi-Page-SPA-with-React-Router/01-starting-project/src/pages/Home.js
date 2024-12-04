@@ -8,7 +8,7 @@ function HomePage() {
 
   // just for testing purpose as a demo
   function navigateHandler() {
-    navigate("/products");
+    navigate("products");
   }
 
   return (
