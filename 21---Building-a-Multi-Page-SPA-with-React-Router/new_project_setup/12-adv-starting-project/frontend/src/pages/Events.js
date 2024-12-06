@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 
 import EventsList from '../components/EventsList';
+import { json } from 'react-router-dom';
 
 function EventsPage() {
   const data = useLoaderData();
@@ -20,16 +21,23 @@ export default EventsPage;
 
 const loader = async () => {
   // can NOT invoke useState() since this loader function is NOT a React component
-  const response = await fetch('http://localhost:8080/eventsssssssssssssssss');
+  const response = await fetch('http://localhost:8080/events'); // wrong url on purpose
   if (!response.ok) {
-    throw new Response(
-      JSON.stringify(
+    throw json(
         { message: 'Could not fetch events' }
-      ),
+      ,
       { 
         status: 500 
       }
-    )
+    );
+    // throw new Response(
+    //   JSON.stringify(
+    //     { message: 'Could not fetch events' }
+    //   ),
+    //   { 
+    //     status: 500 
+    //   }
+    // )
     // return {
     //   isError: true,
     //   message: 'Could not fetch events'
