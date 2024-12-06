@@ -4,6 +4,13 @@ import EventsList from '../components/EventsList';
 
 function EventsPage() {
   const data = useLoaderData();
+
+  if (data.isError) {
+    // return (
+    //   <p>{data.message}</p>
+    // );
+  }
+
   const events = data.events;
   return (
       <EventsList events={events} />
@@ -12,12 +19,17 @@ function EventsPage() {
 export default EventsPage;
 
 const loader = async () => {
-  const response = await fetch('http://localhost:8080/events');
+  // can NOT invoke useState() since this loader function is NOT a React component
+  const response = await fetch('http://localhost:8080/eventsssssssssssssssss');
   if (!response.ok) {
-  // ... handle error
+    throw {
+      message: 'Could not fetch events',
+    };
+    // return {
+    //   isError: true,
+    //   message: 'Could not fetch events'
+    // };
   } else {
-    // const res = new Response("any data", {status: 201});
-    // return res;
     return response.json();
   }
 };
