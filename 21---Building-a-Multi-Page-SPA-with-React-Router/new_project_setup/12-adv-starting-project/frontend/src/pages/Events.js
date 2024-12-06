@@ -21,7 +21,7 @@ export default EventsPage;
 
 const loader = async () => {
   // can NOT invoke useState() since this loader function is NOT a React component
-  const response = await fetch('http://localhost:8080/eventssss'); // wrong url on purpose
+  const response = await fetch('http://localhost:8080/events'); // wrong url on purpose
   if (!response.ok) {
     throw json(
         { message: 'Could not fetch events' }
