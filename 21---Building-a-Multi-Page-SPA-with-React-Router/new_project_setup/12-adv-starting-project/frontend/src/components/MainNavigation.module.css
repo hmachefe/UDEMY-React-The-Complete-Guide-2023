@@ -16,7 +16,10 @@
   color: var(--color-primary-400);
 }
 
-.list a:hover,
 .list a.active {
-  color: var(--color-primary-800);
+  color: var(--color-primary-800); /* Active state color */
+}
+
+.list a:hover:not(.active) {
+  color: var(--color-primary-600); /* Different hover color */
 }
