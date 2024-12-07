@@ -1,9 +1,19 @@
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, useNavigate, useNavigation } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
   const navigate = useNavigate();
+
+  // hook provided by the react-router and gives us access to a navigation object
+  // from where we can extract various piece of information, for instance all the
+  // date which were submitted. Or the current state of currently active transition 
+  // (from one route to another route, or if we submit a form)
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === 'submitting';
+  console.log('isSubmitting == ', isSubmitting);
+
   function cancelHandler() {
     navigate('..');
   }
@@ -27,10 +37,12 @@ function EventForm({ method, event }) {
         <textarea id="description" name="description" rows="5" required defaultValue={event ? event.description : ''}/>
       </p>
       <div className={classes.actions}>
-        <button type="button" onClick={cancelHandler}>
+        <button disabled={isSubmitting} type="button" onClick={cancelHandler}>
           Cancel
         </button>
-        <button>Save</button>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting ...' : 'Save'}
+        </button>
       </div>
     </Form>
   );
