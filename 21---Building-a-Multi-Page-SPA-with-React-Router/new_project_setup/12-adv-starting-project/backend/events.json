@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"test hugo new event  ","image":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","date":"2024-12-21","description":"test hugo new event  fafwfewerf","id":"30c93196-7a79-4a1d-a9d3-ee374d7023a4"},{"title":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","image":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","date":"2024-12-28","description":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","id":"f80b19f0-426a-47b3-a38f-874638e23505"},{"title":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","image":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","date":"2024-12-28","description":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","id":"7320dccc-4ca9-4a08-bc21-da19302eab3f"},{"title":"hugo","image":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","date":"2024-12-21","description":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","id":"2530d699-647d-4c73-b141-88a63f89666c"},{"title":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","image":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","date":"2024-12-19","description":"https://wavebox.io/knowhow/content/images/2022/05/Untitled.003.png","id":"af9d2ebb-5250-42cd-9be8-226d8577321a"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
