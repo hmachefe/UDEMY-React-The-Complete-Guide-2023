@@ -1,8 +1,13 @@
-import { Form, useNavigate, useNavigation } from 'react-router-dom';
+import { Form, useNavigate, useNavigation, useActionData } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
+
+  // return user data returned by our action (in the form)
+  // but response parsed by the router, same as for loader
+  const data = useActionData();
+
   const navigate = useNavigate();
 
   // hook provided by the react-router and gives us access to a navigation object
@@ -12,7 +17,7 @@ function EventForm({ method, event }) {
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === 'submitting';
-  console.log('isSubmitting == ', isSubmitting);
+  console.log('isSubmitting == ', isSubmitting);  
 
   function cancelHandler() {
     navigate('..');
@@ -20,6 +25,13 @@ function EventForm({ method, event }) {
 
   return (
     <Form method="post" action="/events/new" className={classes.form}>
+      {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
       <p>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required defaultValue={event ? event.title : ''}/>

@@ -27,6 +27,13 @@ export async function action({request, params}) {
     body: JSON.stringify(eventData) 
   });
 
+  if (response.status === 422) {
+    // validation errors raised by the back-end', to be returned in our pages and components
+    // not returning redirection on "/events" route
+    // will be used by useActionData() in the EventForm component, already parsed by react router
+    return response;
+  }
+
   if (!response.ok) {   
       throw json(
         { message: 'Could not create event.' },
