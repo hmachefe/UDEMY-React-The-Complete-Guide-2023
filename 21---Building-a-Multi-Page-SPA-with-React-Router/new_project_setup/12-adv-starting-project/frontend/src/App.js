@@ -10,6 +10,9 @@ import { loader as eventsLoader } from "./pages/Events";
 import { action as deleteEventAction } from "./pages/EventDetail";
 import ErrorPage from "./pages/Error";
 import { action as manipulateEventAction } from "./components/EventForm";
+import NewsletterPage from "./pages/Newsletter";
+import { action as newsletterAction } from "./pages/Newsletter";
+
 
 const router = createBrowserRouter([
   {
@@ -47,15 +50,21 @@ const router = createBrowserRouter([
               }    
             ]
           },
-          { 
-            path: "new",
+          {
+            path: 'new',
             element: <NewEventPage />,
-            action: manipulateEventAction
-          }
-        ]
+            action: manipulateEventAction,
+          },
+        ],
+      },
+      {
+        path: 'newsletter',
+        element: <NewsletterPage />,
+        action: newsletterAction,
       },
     ],
-  }]);
+  },
+]);
 
 function App() {
   return <RouterProvider router={router} />;
