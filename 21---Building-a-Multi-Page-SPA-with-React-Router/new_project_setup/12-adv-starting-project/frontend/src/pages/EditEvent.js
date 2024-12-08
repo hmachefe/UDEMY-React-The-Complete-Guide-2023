@@ -5,9 +5,12 @@ import { useRouteLoaderData } from 'react-router-dom';
 
 function EditEventPage() {
   const data = useRouteLoaderData("event-detail");
+  console.log("Loader Data in EditEventPage:", data); // Debugging line
   
+  // method will be passed to the EventForm component, as a prop
+  // and will be retrieved in the EventForm component with useActionData
   return (
-      <EventForm event={data.event} />
+      <EventForm method="patch" event={data.event} />
   )
 }
 
