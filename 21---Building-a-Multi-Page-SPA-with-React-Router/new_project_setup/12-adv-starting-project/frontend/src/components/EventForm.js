@@ -1,4 +1,5 @@
 import { Form, useNavigate, useNavigation, useActionData } from 'react-router-dom';
+import { json, redirect } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
@@ -17,14 +18,13 @@ function EventForm({ method, event }) {
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === 'submitting';
-  console.log('isSubmitting == ', isSubmitting);  
 
   function cancelHandler() {
     navigate('..');
   }
 
   return (
-    <Form method="post" action="/events/new" className={classes.form}>
+    <Form method={method} className={classes.form}>
       {data && data.errors && (
         <ul>
           {Object.values(data.errors).map((error) => (
@@ -59,5 +59,52 @@ function EventForm({ method, event }) {
     </Form>
   );
 }
+
+export async function action({request, params}) {
+
+  console.log('params == ', params);
+
+  const method = request.method;
+  const data = await request.formData();
+  const eventData = {
+    title: data.get('title'),
+    image: data.get('image'),
+    date: data.get('date'),
+    description: data.get('description')
+  };
+
+  let url = 'http://localhost:8080/events/';
+  if (method === 'PATCH') {
+    const eventId = params.eventId;
+    url += eventId;
+  }
+
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(eventData) 
+  });
+
+  if (response.status === 422) {
+    // validation errors raised by the back-end', to be returned in our pages and components
+    // not returning redirection on "/events" route
+    // will be used by useActionData() in the EventForm component, already parsed by react router
+    return response;
+  }
+
+  if (!response.ok) {   
+      throw json(
+        { message: 'Could not create event.' },
+        { status: 500 }   
+      );
+  }
+
+  // return response.json();
+
+  return redirect('/events');
+
+} 
 
 export default EventForm;
