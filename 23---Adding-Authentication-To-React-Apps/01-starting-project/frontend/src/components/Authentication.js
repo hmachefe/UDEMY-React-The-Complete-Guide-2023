@@ -51,7 +51,11 @@ export async function action({request}) {
     });
   }
 
-  // soon, manage that token retrieved from the backend
+  const resData = await response.json();
+  const token = resData.token;
+  // token needs to be stored. Could be put in memory, or in a cookie
+  localStorage.setItem('token', token);
+
   return redirect("/");
 
 };
