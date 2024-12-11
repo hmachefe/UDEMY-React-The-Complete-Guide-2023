@@ -1,12 +1,1 @@
-{
-  "events": [
-    {
-      "title": "A new event",
-      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
-      "date": "2022-10-01",
-      "description": "Some awesome event!",
-      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
-    }
-  ],
-  "users": []
-}
+{"events":[{"title":"test 22","image":"https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/25/2a/60252a00-d015-a902-d2b7-fc51904d4425/logo_calendar_2020q4_color-0-1x_U007epad-0-0-0-0-0-0-0-85-220-0.png/1200x630wa.png","date":"2024-12-26","description":"https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/25/2a/60252a00-d015-a902-d2b7-fc51904d4425/logo_calendar_2020q4_color-0-1x_U007epad-0-0-0-0-0-0-0-85-220-0.png/1200x630wa.png","id":"c50cf755-def7-4c65-a696-cefbb04d93f2"},{"title":"new event 1","image":"https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/25/2a/60252a00-d015-a902-d2b7-fc51904d4425/logo_calendar_2020q4_color-0-1x_U007epad-0-0-0-0-0-0-0-85-220-0.png/1200x630wa.png","date":"2024-12-20","description":"https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/25/2a/60252a00-d015-a902-d2b7-fc51904d4425/logo_calendar_2020q4_color-0-1x_U007epad-0-0-0-0-0-0-0-85-220-0.png/1200x630wa.png","id":"806bc5cf-3987-49c4-8db7-10db4369ae9c"}],"users":[{"email":"test@test.com","password":"$2a$12$cdVL5FNLtI2Lemv97Jin4u0/Zdo.Deb2agDOMmvi/qruy6RICt0GS","id":"1da124ae-c24e-400a-972c-a4d386b65ecc"},{"email":"test2@test.com","password":"$2a$12$j2WwdzqKHE3yQXTE0Afa2uQJ0U0sYQ1Mefe5cNsU3QTAnymB9cW/C","id":"9fe4cfe4-a437-441a-a9bd-2527a5152beb"},{"email":"isbellegachon2@me.com","password":"$2a$12$cmIInNhYKsa9MiTye223G.WKOI.D2I7/X8K.27u8kaYlPw1WWYR8G","id":"a5ae07d8-e0d6-4569-8bd6-65512bfcc690"},{"email":"hugo.machefer@free.fr","password":"$2a$12$E/fGyfxlTEL0g5w9aKQ0AOsF.Qw57G0eFcmNnST95EEfcozJQ5N1G","id":"17990eb0-703d-4b75-a996-96f4004a3059"}]}
