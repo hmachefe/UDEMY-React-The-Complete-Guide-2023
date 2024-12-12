@@ -21,7 +21,8 @@ export default function EventDetails() {
       mutationFn: deleteEvent,
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: "/events"
+          queryKey: "/events",
+          refetchType: "none" // current fetched content through useMutation will not be triggered again
         });
         navigate("/events");
       }
