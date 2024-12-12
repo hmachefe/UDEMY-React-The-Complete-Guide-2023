@@ -7,30 +7,14 @@ import EventItem from './EventItem.jsx';
 import { fetchEvents } from '../../util/http.js';
 
 export default function NewEventsSection() {
-  // const [data, setData] = useState();
-  // const [error, setError] = useState();
-  // const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   fetchEvents()
-  //     .then((events) => {
-  //       setData(events);
-  //     })
-  //     .catch((error) => {
-  //       setError(error);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }, []);
-
+  // returns a query object that can be used with destructuring to pull out the elements which are the most important 
   const { data, isPending, isError, error /* message*/, refetch } = useQuery(
-    // returns a query object that can be used with destructuring to pull out the elements which are the most important 
     { 
       queryKey: ['events'], // identifier (used for caching purpose)
       queryFn: fetchEvents, // function that returns a Promise
-      staleTime: 15000,
-      gcTime: 100
+      // staleTime: 15000,
+      // gcTime: 100
     }
   );
 
