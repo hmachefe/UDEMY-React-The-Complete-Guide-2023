@@ -43,7 +43,6 @@ export async function createNewEvent(eventData) {
   return event;
 }
 
-
 export async function fetchSelectableImages({ signal }) {
   const response = await fetch(`http://localhost:3000/events/images`, { signal });
 
