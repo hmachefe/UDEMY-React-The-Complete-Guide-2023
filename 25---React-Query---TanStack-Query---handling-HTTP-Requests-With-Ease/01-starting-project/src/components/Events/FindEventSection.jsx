@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchEvents } from '../../util/http';
 import LoadingIndicator from '../UI/LoadingIndicator';
 import ErrorBlock from '../UI/ErrorBlock';
+import EventItem from './EventItem';
 
 export default function FindEventSection() {
   const searchElement = useRef();
