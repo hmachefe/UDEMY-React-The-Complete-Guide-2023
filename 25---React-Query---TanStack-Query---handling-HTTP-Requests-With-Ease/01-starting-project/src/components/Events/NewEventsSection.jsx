@@ -28,7 +28,9 @@ export default function NewEventsSection() {
     // returns a query object that can be used with destructuring to pull out the elements which are the most important 
     { 
       queryKey: ['events'], // identifier (used for caching purpose)
-      queryFn: fetchEvents // function that returns a Promise
+      queryFn: fetchEvents, // function that returns a Promise
+      staleTime: 15000,
+      gcTime: 100
     }
   );
 
