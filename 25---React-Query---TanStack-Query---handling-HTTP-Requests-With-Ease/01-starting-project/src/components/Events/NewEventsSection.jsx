@@ -10,8 +10,9 @@ export default function NewEventsSection() {
   // returns a query object that can be used with destructuring to pull out the elements which are the most important 
   const { data, isPending, isError, error /* message*/, refetch } = useQuery(
     { 
-      queryKey: ['events'], // identifier (used for caching purpose)
-      queryFn: fetchEvents, // function that returns a Promise
+      queryKey: ['events', { max: 3 }], // identifier (used for caching purpose)
+      queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
+      // queryFn: ({ signal }) => fetchEvents({ signal, max: 3 }), // function that returns a Promise
       // staleTime: 15000,
       // gcTime: 100
     }
