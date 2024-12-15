@@ -6,6 +6,7 @@ import ImageSlideshow from './components/images/image-slideshow';
 // http://localhost:3000
 
 export default function Home() {
+  
   return (
     <>
       <header className={classes.header}>
