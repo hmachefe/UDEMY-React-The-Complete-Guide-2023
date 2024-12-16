@@ -8,6 +8,6 @@ export async function getMeals() {
     // db.prepare("SELECT * FROM meals").get(); // would be used for one single data
 
     await new Promise((resolve) => setTimeout(resolve, 2000)); // artificial, demo purpose
-    throw new Error("Loading Meals failed.");
+    // throw new Error("Loading Meals failed.");
     return db.prepare("SELECT * FROM meals").all(); // all is used for fetching data
 }
