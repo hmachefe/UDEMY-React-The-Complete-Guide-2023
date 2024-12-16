@@ -3,6 +3,7 @@
 // http://localhost:3000/meals/share
 import Image from "next/image";
 import { getMeal } from "@/lib/meals";
+import { notFound } from "next/navigation";
 
 import classes from "./page.module.css"
 
@@ -10,6 +11,10 @@ export default function MealDetailsPage({params}) { // special params prop passe
 
     // getMeal() is executed server side, extracting a specific meal from the database
     const meal = getMeal(params.mealSlug); // params (object) contains key-value pairs (e.g: mealSlug)
+
+    if (!meal) {
+        notFound();
+    }
 
     meal.instructions = meal.instructions.replace(/\n/g, "<BR />");
 
