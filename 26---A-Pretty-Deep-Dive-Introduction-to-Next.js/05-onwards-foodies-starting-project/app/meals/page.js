@@ -1,9 +1,13 @@
-import MealsGrid from "../components/meals/meals-grid";
-import classes from "./page.module.css";
 import Link from "next/link";
-export default function MealsPage() {
+import { getMeals } from "@/lib/meals";
+import MealsGrid from "../components/meals/meals-grid";
 
-    console.log("MealsPage executing...");
+import classes from "./page.module.css";
+
+export default async function MealsPage() { // we can use ASYNC as a prefix only because server side
+
+    const meals = await getMeals();
+    console.log("meals == ", meals);
 
     return (
         <>
@@ -21,7 +25,7 @@ export default function MealsPage() {
                 </p>
             </header>
             <main className={classes.main}>
-                <MealsGrid meals={[]} />
+                <MealsGrid meals={meals} />
             </main>
         </>
     );
