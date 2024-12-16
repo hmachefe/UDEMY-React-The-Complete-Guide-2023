@@ -11,3 +11,8 @@ export async function getMeals() {
     // throw new Error("Loading Meals failed.");
     return db.prepare("SELECT * FROM meals").all(); // all is used for fetching data
 }
+
+export function getMeal(slug) {
+//    return db.prepare("SELECT * FROM meals WHERE slug= " + slug); // WOULD BE INSECURED 
+    return db.prepare("SELECT * FROM meals WHERE slug = ?").get(slug); // PROTECT AGAINST SQL INJECTION
+}
