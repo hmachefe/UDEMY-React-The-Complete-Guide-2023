@@ -1,13 +1,17 @@
+import { Suspense } from "react";
+
 import Link from "next/link";
 import { getMeals } from "@/lib/meals";
 import MealsGrid from "../components/meals/meals-grid";
 
 import classes from "./page.module.css";
 
-export default async function MealsPage() { // we can use ASYNC as a prefix only because server side
-
+async function Meals() {
     const meals = await getMeals();
-    console.log("meals == ", meals);
+    return <MealsGrid meals={meals} />
+}
+
+export default async function MealsPage() { // we can use ASYNC as a prefix only because server side
 
     return (
         <>
@@ -25,7 +29,15 @@ export default async function MealsPage() { // we can use ASYNC as a prefix only
                 </p>
             </header>
             <main className={classes.main}>
-                <MealsGrid meals={meals} />
+                <Suspense
+                    fallback={
+                        <p className={classes.loading}>
+                            Fetching Meals...
+                        </p>
+                    }
+                >
+                    <Meals/>
+                </Suspense>
             </main>
         </>
     );
