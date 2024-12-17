@@ -1,5 +1,6 @@
 import sql from "better-sqlite3";
-
+import slugify from "slugify";
+import xss from "xss";
 const db = sql("meals.db");
 
 export async function getMeals() {
@@ -15,4 +16,19 @@ export async function getMeals() {
 export function getMeal(slug) {
 //    return db.prepare("SELECT * FROM meals WHERE slug= " + slug); // WOULD BE INSECURED 
     return db.prepare("SELECT * FROM meals WHERE slug = ?").get(slug); // PROTECT AGAINST SQL INJECTION
+}
+
+
+export function saveMeal(meal) {
+    // we want to create a slug like 
+    //  id INTEGER PRIMARY KEY AUTOINCREMENT,
+    //  slug TEXT NOT NULL UNIQUE,
+    //  title TEXT NOT NULL,
+    //  image TEXT NOT NULL,
+    //  summary TEXT NOT NULL,
+    //  instructions TEXT NOT NULL,
+    //  creator TEXT NOT NULL,
+    //  creator_email TEXT NOT NULL
+    meal.slug = slugify(meal.title, {lower: true});
+    meal.intructions = xss(meal.intructions);
 }
