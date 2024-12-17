@@ -1,4 +1,7 @@
-"use server"; // important: Directive not inside a function. Instead at the top of the file. 
+"use server";
+import { saveMeal } from "./meals";
+
+ // important: Directive not inside a function. Instead at the top of the file. 
 
 export async function shareMeal(formData) {
     // this creates a so called action, guaranted to be executed on the server, and only there
@@ -13,5 +16,5 @@ export async function shareMeal(formData) {
       creator: formData.get("name"),
       creator_email: formData.get("email")
     };
-    console.log(meal);
+    await saveMeal(meal);
   }
