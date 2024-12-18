@@ -9,7 +9,9 @@ export async function getMeals() {
     // db.prepare("SELECT * FROM meals").run(); // run is used for inserting data, or changing them
     // db.prepare("SELECT * FROM meals").get(); // would be used for one single data
 
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // artificial, demo purpose
+    console.log("getMeals fetching them from DB...");
+
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // artificial, demo purpose
     // throw new Error("Loading Meals failed.");
     return db.prepare("SELECT * FROM meals").all(); // all is used for fetching data
 }
