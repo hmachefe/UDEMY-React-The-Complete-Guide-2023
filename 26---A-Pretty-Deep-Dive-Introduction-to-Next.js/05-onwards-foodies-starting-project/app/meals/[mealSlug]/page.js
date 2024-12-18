@@ -16,8 +16,6 @@ export async function generateMetadata( { params } ) {
  };
 };
 
-
-
 export default function MealDetailsPage( { params } ) { // special params prop passed by nextJS
 
     const meal = getMeal(params.mealSlug); 
