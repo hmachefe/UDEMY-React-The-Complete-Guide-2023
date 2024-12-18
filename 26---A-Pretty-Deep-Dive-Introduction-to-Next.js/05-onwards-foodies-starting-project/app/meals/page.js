@@ -6,6 +6,11 @@ import MealsGrid from "../components/meals/meals-grid";
 
 import classes from "./page.module.css";
 
+export const metadata = {
+    title: 'hugo Course App',
+    description: 'hugo first NextJS app!',
+  };
+
 async function Meals() {
     const meals = await getMeals();
     return <MealsGrid meals={meals} />
