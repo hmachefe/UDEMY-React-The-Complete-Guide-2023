@@ -7,10 +7,20 @@ import { notFound } from "next/navigation";
 
 import classes from "./page.module.css"
 
-export default function MealDetailsPage({params}) { // special params prop passes by nextJS
+export async function generateMetadata( { params } ) {
+ // special params prop passed by nextJS also
+ const meal = getMeal(params.mealSlug);
+ return {
+    title: meal.title,
+    description: meal.summary
+ };
+};
 
-    // getMeal() is executed server side, extracting a specific meal from the database
-    const meal = getMeal(params.mealSlug); // params (object) contains key-value pairs (e.g: mealSlug)
+
+
+export default function MealDetailsPage( { params } ) { // special params prop passed by nextJS
+
+    const meal = getMeal(params.mealSlug); 
 
     if (!meal) {
         notFound();
