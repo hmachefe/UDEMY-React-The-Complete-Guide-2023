@@ -4,7 +4,7 @@ import { saveMeal } from "./meals";
 
  // important: Directive not inside a function. Instead at the top of the file. 
 
-export async function shareMeal(formData) {
+export async function shareMeal(previousState, formData) {
 
     function isInvalidText(text) {
       return !text || text.trim() === "";
@@ -38,7 +38,10 @@ export async function shareMeal(formData) {
       ||
       (!meal.image || meal.image.size == 0)
     ) {
-      throw new Error("Invalid input");
+      // throw new Error("Invalid input");
+      return {
+        message: "Invalid input",
+      };
     }
 
     await saveMeal(meal);
