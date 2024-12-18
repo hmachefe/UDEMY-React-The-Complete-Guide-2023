@@ -1,4 +1,5 @@
 "use server";
+import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 
  // important: Directive not inside a function. Instead at the top of the file. 
@@ -17,4 +18,5 @@ export async function shareMeal(formData) {
       creator_email: formData.get("email")
     };
     await saveMeal(meal);
+    redirect("/meals");
   }
