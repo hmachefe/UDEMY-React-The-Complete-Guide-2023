@@ -1,6 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
+import { revalidatePath } from "next/cache";
 
  // important: Directive not inside a function. Instead at the top of the file. 
 
@@ -45,5 +46,9 @@ export async function shareMeal(previousState, formData) {
     }
 
     await saveMeal(meal);
-    redirect("/meals");
+    revalidatePath("/meals"); // triggers cache revalidation
+    // revalidatePath("/", "layout");
+    // revalidatePath("/meals", "layout");
+    // revalidatePath("/meals", "page");
+    redirect("/meals"); 
   }
