@@ -11,6 +11,27 @@ function MeetupDetails({}) {
     />
 }
 
+export async function getStaticPaths() {
+    return {
+        fallback: false, // means all paths have been covered, m1 and m2, and there no nore paths
+        // with fallback we can simply define some paths insteaf of all paths
+        // for instance, in case we have 100 of pages and we don't want to pregenerate all of them...
+        // but maybe the most popular pages
+        paths: [
+        {
+            params:             {
+                meetupId: "m1" // temporarily hard-coded
+            },
+        },
+        {
+            params:             {
+                meetupId: "m2" // temporarily hard-coded
+            }
+        }
+        ]
+    };
+}
+
 export async function getStaticProps(context) {
     // fetch data for a single meetup
 
