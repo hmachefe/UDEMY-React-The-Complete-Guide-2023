@@ -28,7 +28,8 @@ export async function getStaticProps() { // reserved name, while  npm run build 
       // we can load data before this component is executed. So that this comp can be rendered with the required data
       // we could access a file system here. Or securely connect to a database. (e.g. Fetching data from on api)
       props: { // match the props parameter passed in HomePage() function
-         meetups: DUMMY_MEETUPS // this code will never execute on the client side. Neither server side at run time
+         meetups: DUMMY_MEETUPS, // this code will never execute on the client side. Neither server side at run time
+         revalidate: 10 // or 1, or 3600 (Depending on how often data-populated UI would need to be refreshed)
       }
    };
 }
