@@ -1,5 +1,4 @@
 import MeetupList from "../components/meetups/MeetupList";
-import { useEffect, useState } from "react";
 
 const DUMMY_MEETUPS = [
  {
@@ -18,15 +17,20 @@ const DUMMY_MEETUPS = [
  }
 ];
 
-function HomePage() {
-   const [loadedMeetups, setLoadedMeetups] = useState([]);
+function HomePage(props) {
+    return <MeetupList meetups={props.meetups}/>
+}
 
-   useEffect(() => {
-      // send a HTTP request and fetch data
-      setLoadedMeetups(DUMMY_MEETUPS); // simulating data's retrieval from backend
-   }, [/* dependency */]);
 
-    return <MeetupList meetups={loadedMeetups}/>
+// reserved name, used (in production) DURING THE BUILD PRCESS. Must be async
+export async function getStaticProps() { // reserved name, while  npm run build   is applied
+   return {
+      // we can load data before this component is executed. So that this comp can be rendered with the required data
+      // we could access a file system here. Or securely connect to a database. (e.g. Fetching data from on api)
+      props: { // match the props parameter passed in HomePage() function
+         meetups: DUMMY_MEETUPS // this code will never execute on the client side. Neither server side at run time
+      }
+   };
 }
 
 export default HomePage;
