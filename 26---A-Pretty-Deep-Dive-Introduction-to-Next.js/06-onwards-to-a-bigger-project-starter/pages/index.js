@@ -1,8 +1,17 @@
 import { MongoClient } from "mongodb"; // will not be included in the client side bundle
 import MeetupList from "../components/meetups/MeetupList";
+import { Fragment } from "react";
+import Head from "next/head";
+
 
 function HomePage(props) {
-    return <MeetupList meetups={props.meetups}/>
+
+   return <Fragment>
+      <Head>
+         <title>React Meetups</title>   
+      </Head>      
+      return <MeetupList meetups={props.meetups}/>
+   </Fragment>
 }
 
 // // reserved name. This server side function runs for every incoming request 
