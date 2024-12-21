@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",  // Start from the root folder
+    "paths": {
+      "@/*": ["./app/*"] // Map '@/' to './app'
+    }
+  }
+}
