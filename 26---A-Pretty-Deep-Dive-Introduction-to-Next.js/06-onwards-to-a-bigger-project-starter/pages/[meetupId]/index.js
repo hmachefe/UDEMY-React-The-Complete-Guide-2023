@@ -1,16 +1,25 @@
 import MeetupDetail from "../../components/meetups/MeetupDetail";
 import { MongoClient, ObjectId } from "mongodb";
-
+import Head from "next/head";
+import { Fragment } from "react";
 // No CSS here. To keep the pages leaner. Styling will be applied in low level (embedding) components directly
 
-
 function MeetupDetails(props) {
-    return <MeetupDetail 
-        title = {props.meetupData.title}
-        image = {props.meetupData.image}
-        address = {props.meetupData.address}
-        description = {props.meetupData.description}
-    />
+    return <Fragment>
+        <Head>
+            <title>{props.meetupData.title}</title>
+            <meta 
+                name="description"
+                content={props.meetupData.description}
+            ></meta>
+        </Head>
+        <MeetupDetail 
+            title = {props.meetupData.title}
+            image = {props.meetupData.image}
+            address = {props.meetupData.address}
+            description = {props.meetupData.description}
+        />
+    </Fragment>
 }
 
 // function MeetupDetails({}) {
