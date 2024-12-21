@@ -8,9 +8,8 @@ async function handler(request, response) {
         const data = request.body;
 
         try {
-            // Standard connection string
             const client = await MongoClient.connect(
-                "mongodb://hugomachefer:v...hj@cluster0-shard-00-00.2jphb.mongodb.net:27017,cluster0-shard-00-01.2jphb.mongodb.net:27017,cluster0-shard-00-02.2jphb.mongodb.net:27017/?ssl=true&replicaSet=atlas-5092v5-shard-0&authSource=admin&retryWrites=true&w=majority"
+                "mongodb://hugomachefer:vzY78MBcRdw4lFhj@cluster0-shard-00-00.2jphb.mongodb.net:27017,cluster0-shard-00-01.2jphb.mongodb.net:27017,cluster0-shard-00-02.2jphb.mongodb.net:27017/?ssl=true&replicaSet=atlas-5092v5-shard-0&authSource=admin&retryWrites=true&w=majority"
             );
 
             const db = client.db("meetups"); // Replace with your database name
