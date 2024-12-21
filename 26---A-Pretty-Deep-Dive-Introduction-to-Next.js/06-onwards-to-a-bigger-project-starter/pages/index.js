@@ -1,26 +1,9 @@
+import { MongoClient } from "mongodb"; // will not be included in the client side bundle
 import MeetupList from "../components/meetups/MeetupList";
-
-const DUMMY_MEETUPS = [
- {
-    id: "m1",
-    title: "A first meetup",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/M%C3%BCnchen_Panorama-CN.jpg/1280px-M%C3%BCnchen_Panorama-CN.jpg",
-    address: "add",
-    description: "desc"
- },
- {
-    id: "m2",
-    title: "A second meetup",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/M%C3%BCnchen_Panorama-CN.jpg/1280px-M%C3%BCnchen_Panorama-CN.jpg",
-    address: "add 2",
-    description: "desc 2"
- }
-];
 
 function HomePage(props) {
     return <MeetupList meetups={props.meetups}/>
 }
-
 
 // // reserved name. This server side function runs for every incoming request 
 // export async function getServerSideProps(context) {
@@ -39,11 +22,29 @@ function HomePage(props) {
 // reserved name, used (in production) DURING THE BUILD PRCESS. Must be async
 export async function getStaticProps(context) { // reserved name, while  npm run build   is applied
 // context has not been used here. But could have been
+
+   const client = await MongoClient.connect(
+      "mongodb://hugomachefer:vzY78MBcRdw4lFhj@cluster0-shard-00-00.2jphb.mongodb.net:27017,cluster0-shard-00-01.2jphb.mongodb.net:27017,cluster0-shard-00-02.2jphb.mongodb.net:27017/?ssl=true&replicaSet=atlas-5092v5-shard-0&authSource=admin&retryWrites=true&w=majority"
+   );
+
+   const db = client.db("meetups"); // Replace with your database name
+   const meetupsCollection = db.collection("meetups"); // Replace with your collection name
+
+   const meetups = await meetupsCollection.find().toArray();
+
+   client.close();
+
    return {
       // we can load data before this component is executed. So that this comp can be rendered with the required data
       // we could access a file system here. Or securely connect to a database. (e.g. Fetching data from on api)
       props: { // match the props parameter passed in HomePage() function
-         meetups: DUMMY_MEETUPS, // this code will never execute on the client side. Neither server side at run time
+         meetups: meetups.map(meetup => ({
+            title: meetup.title,
+            description: meetup.description,
+            address: meetup.address,
+            image: meetup.image,
+            id: meetup._id.toString(),
+         })), // this code will never execute on the client side. Neither server side at run time
          // with revalidate, we can insure that this page updates regularly, after deployment
          // but sometimes, we really want to regenerate this page for evey incoming requests 
          revalidate: 10 // or 1, or 3600 (Depending on how often data-populated UI would need to be refreshed)
