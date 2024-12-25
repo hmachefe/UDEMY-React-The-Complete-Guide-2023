@@ -5,14 +5,16 @@
 import fs from "node:fs/promises";
 import { Suspense } from "react";
 import UsePromiseDemo from "./components/UsePromisesDemo";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 export default async function Home() {
 
-  const fetchUsersPromise = new Promise((resolve) => setTimeout(async () => {
-    const data = await fs.readFile("dummy-db.json", "utf-8");
-    const users = JSON.parse(data);  
-    resolve(users)
-  }, 3000));
+const fetchUsersPromise = new Promise((resolve, reject) => 
+  setTimeout(async () => {
+    // resolve(users)
+    reject(new Error("Error !")); // for testing purpose
+  }, 3000)
+);
 
   // const data = await fs.readFile("dummy-db.json", "utf-8");
   // const users = JSON.parse(data);
@@ -25,9 +27,11 @@ export default async function Home() {
       </ClientDemo> */}
       { /* <DataFetchingDemo /> */}
       { /* <ServerActionsDemo />*/ }
-      <Suspense fallback={<p>Loading users...</p>}>
-        <UsePromiseDemo usersPromise={fetchUsersPromise}/>
-      </Suspense>
+      <ErrorBoundary fallback={<p>Something went wrong !</p>}>
+        <Suspense fallback={<p>Loading users...</p>}>
+          <UsePromiseDemo usersPromise={fetchUsersPromise}/>
+        </Suspense>
+      </ErrorBoundary>
     </main>
   );
 }
