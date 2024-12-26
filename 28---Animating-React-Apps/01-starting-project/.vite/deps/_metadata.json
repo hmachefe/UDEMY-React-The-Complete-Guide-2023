@@ -1,0 +1,38 @@
+{
+  "hash": "b83ffcc4",
+  "browserHash": "9ff9c9cd",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d8255762",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "497f6f81",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "9f5a2c2e",
+      "needsInterop": false
+    },
+    "react-dom": {
+      "src": "../../node_modules/react-dom/index.js",
+      "file": "react-dom.js",
+      "fileHash": "6cbf865b",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-QIPSOEQB": {
+      "file": "chunk-QIPSOEQB.js"
+    },
+    "chunk-34R7EE2F": {
+      "file": "chunk-34R7EE2F.js"
+    }
+  }
+}
