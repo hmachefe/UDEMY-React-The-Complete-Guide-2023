@@ -10,6 +10,11 @@ import classes from "./page.module.css"
 export async function generateMetadata( { params } ) {
  // special params prop passed by nextJS also
  const meal = getMeal(params.mealSlug);
+
+ if (!meal) {
+    notFound();
+ }    
+
  return {
     title: meal.title,
     description: meal.summary
