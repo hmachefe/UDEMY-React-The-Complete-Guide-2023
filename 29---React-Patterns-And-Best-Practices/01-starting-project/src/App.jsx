@@ -6,7 +6,7 @@ function App() {
     <h2>why work with us ?</h2>
     {/* wrapper component */}
     <Accordion className="accordion">
-      <AccordionItem 
+      <Accordion.Item 
         id="experience"
         className="accordion-item"
         title="We got 20 years of experience"
@@ -20,8 +20,8 @@ function App() {
             vacation trips for more than 20 years
           </p>
         </article>
-      </AccordionItem>
-      <AccordionItem
+      </Accordion.Item>
+      <Accordion.Item
         id="local-guides"
         className="accordion-item"
         title="we are working with local guides"
@@ -35,7 +35,7 @@ function App() {
           </p>
         </article>
         
-      </AccordionItem>
+      </Accordion.Item>
     </Accordion>
   </main>;
 }
