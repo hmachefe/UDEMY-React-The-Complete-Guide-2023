@@ -4,9 +4,10 @@ import AccordionItem from "./components/Accordion/AccordionItem";
 function App() {
   return <main>
     <h2>why work with us ?</h2>
-    /* wrapper component */
+    {/* wrapper component */}
     <Accordion className="accordion">
       <AccordionItem 
+        id="experience"
         className="accordion-item"
         title="We got 20 years of experience"
       >
@@ -21,6 +22,7 @@ function App() {
         </article>
       </AccordionItem>
       <AccordionItem
+        id="local-guides"
         className="accordion-item"
         title="we are working with local guides"
       >
