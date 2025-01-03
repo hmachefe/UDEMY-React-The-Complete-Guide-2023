@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SearchableList({items}) {
+function SearchableList({items, children}) {
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -16,7 +16,7 @@ function SearchableList({items}) {
         <ul>
             {searchResults.map((item, index) => (
                 <li key={index}>
-                    {item.toString()}
+                    {children(item)}
                 </li>
             ))}
         </ul>
