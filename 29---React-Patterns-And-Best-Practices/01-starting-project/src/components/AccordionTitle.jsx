@@ -1,9 +1,9 @@
-import React from 'react'
-
 import { useAccordionContext } from './Accordion/Accordion'
+import { useAccordionItemContext } from './Accordion/AccordionItem';
 
-function AccordionTitle({id, className, children}) {
+function AccordionTitle({ className, children }) {
   const { toggleItem } = useAccordionContext();
+  const id = useAccordionItemContext();
   return (
     <h3 className={className} onClick={() => toggleItem(id)}>
         {children}
