@@ -5,6 +5,7 @@ import amazonImg from './assets/amazon-river.jpg';
 import caribbeanImg from './assets/caribbean-beach.jpg';
 import desertImg from './assets/desert-dunes.jpg';
 import forestImg from './assets/forest-waterfall.jpg';
+import Place from './components/Place';
 
 const PLACES = [
   {
@@ -83,8 +84,13 @@ function App() {
     </section>
 
     <section>
-      <SearchableList items={PLACES} />
-      <SearchableList items={["Item 1", "Item 2"]} />
+      <SearchableList items={PLACES}>
+        {(item) => <Place item={item} />}
+      </SearchableList>
+      <SearchableList items={["Item 1", "Item 2"]}>
+        {(item) => item}
+      </SearchableList>
+
     </section>
   </main>;
 }
