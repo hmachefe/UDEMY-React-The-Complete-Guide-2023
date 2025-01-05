@@ -1,4 +1,4 @@
-import { useEffect, useState }  from 'react';
+import { useState, useEffect } from 'react';
 
 let globalState = {};
 let listeners = [];
@@ -8,8 +8,8 @@ export const useStore = () => {
     const setState = useState(globalState)[1];
 
     const dispatch = (actionIdentifier, payload) => {
-        const newstate = actions[actionIdentifier](globalState, payload);
-        globalState = {...globalState, newstate};
+        const newState = actions[actionIdentifier](globalState, payload);
+        globalState = {...globalState, ...newState};
 
         for (const listener of listeners) {
             listener(globalState);
@@ -19,7 +19,7 @@ export const useStore = () => {
     useEffect(() => {
         listeners.push(setState);
         return () => {
-            listeners = listeners.filter(listener => listener != setState)
+            listeners = listeners.filter(listener => listener !== setState)
         };
     }, [setState]);
 
