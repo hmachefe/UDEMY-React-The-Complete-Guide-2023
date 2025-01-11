@@ -8,12 +8,7 @@ function App() {
 
 
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  // const todos = [
-  //   new Todo('learn React'),
-  //   new Todo('learn TypeScript')
-  // ]
-
+  
   const addTodoHandler = (todoText: string) => {
     const newTodo = new Todo(todoText);
     setTodos(previousTodos => {
